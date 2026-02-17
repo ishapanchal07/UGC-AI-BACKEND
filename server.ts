@@ -1,4 +1,4 @@
-import "./configs/instrument/mjs"
+import "./configs/instrument.mjs"
 import "dotenv/config";
 import express, { Request, Response } from 'express';
 import cors from "cors";
@@ -21,6 +21,10 @@ const port = process.env.PORT || 3000;
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Server is Live!');
+});
+
+app.get("/debug-sentry", function mainHandler(req, res) {
+  throw new Error("My first Sentry error!");
 });
 
 // The error handler must be registered before any other error middleware and after all controllers
