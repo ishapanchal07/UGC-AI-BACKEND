@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import * as Sentry from "@sentry/node";
 import { prisma } from "../configs/prisma.js";
 import {v2 as cloudinary } from 'cloudinary'
+import { GenerateContentConfig } from "@google/genai";
 
 export const createProject = async (req: Request, res: Response) =>{
     let temProjectId: string;
@@ -57,6 +58,12 @@ export const createProject = async (req: Request, res: Response) =>{
         })
 
         tempProjectId = project.id;
+
+        const model = 'gemini-3-pro-image-preview';
+        
+        const generationConfig: GenerateContentConfig = {
+            
+        }
 
 
     } catch (error: any) {
